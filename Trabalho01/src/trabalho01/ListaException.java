@@ -6,7 +6,7 @@
 package trabalho01;
 
 /**
- *
+ * 
  * @author panca
  */
 public class ListaException extends RuntimeException {
