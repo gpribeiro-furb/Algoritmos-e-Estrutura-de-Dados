@@ -1,14 +1,5 @@
-/*
- * Stringo change this license header, choose License Headers in Project Properties.
- * Stringo change this template file, choose Stringools | Stringemplates
- * and open the template in the editor.
- */
 package trabalho01;
 
-/**
- *
- * @author panca
- */
 public class PilhaVetor implements Pilha {
 
     private String[] vetor;

@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package trabalho01;
 
-/**
- *
- * @author Brenda Rodrigues
- */
 public class InteracaoUsuario extends javax.swing.JFrame {
 
     /**
@@ -29,12 +20,15 @@ public class InteracaoUsuario extends javax.swing.JFrame {
 
         jFrame1 = new javax.swing.JFrame();
         jFrame2 = new javax.swing.JFrame();
+        GrupoBotaoPilha = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         btCalcular = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        tfExpressao = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        tfExpressao = new javax.swing.JTextField();
+        taInformacao = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        rbVetor = new javax.swing.JRadioButton();
+        rbDinamica = new javax.swing.JRadioButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -63,26 +57,61 @@ public class InteracaoUsuario extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        btCalcular.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btCalcular.setText("Calcular");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText(" \nPara utilizar a Calculadora Pós Fixa, insira as expressões \nseparadas por espaço. Exemplo: 1 2 +");
-        jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informação"));
-        jScrollPane1.setViewportView(jTextArea1);
-
-        tfExpressao.setBorder(javax.swing.BorderFactory.createTitledBorder("Expressão"));
-        tfExpressao.addActionListener(new java.awt.event.ActionListener() {
+        btCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfExpressaoActionPerformed(evt);
+                btCalcularActionPerformed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/etc/Calc.png"))); // NOI18N
         jLabel2.setText("Calculadora Pós Fixa ");
+
+        tfExpressao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        tfExpressao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Expressão", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        tfExpressao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfExpressaoActionPerformed(evt);
+            }
+        });
+
+        taInformacao.setColumns(20);
+        taInformacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        taInformacao.setLineWrap(true);
+        taInformacao.setRows(5);
+        taInformacao.setText("Para utilizar a Calculadora Pós Fixa, insira as \nexpressões separadas por espaço. \n\nExemplo: 1 2 +");
+        taInformacao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pilha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+
+        rbVetor.setBackground(new java.awt.Color(255, 255, 255));
+        GrupoBotaoPilha.add(rbVetor);
+        rbVetor.setText("Vetor");
+
+        rbDinamica.setBackground(new java.awt.Color(255, 255, 255));
+        GrupoBotaoPilha.add(rbDinamica);
+        rbDinamica.setText("Dinâmica");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(rbVetor)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(rbDinamica, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(rbVetor, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbDinamica, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,32 +120,33 @@ public class InteracaoUsuario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(tfExpressao, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfExpressao, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(22, 22, 22))
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(taInformacao)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel2)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfExpressao, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfExpressao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(taInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -127,9 +157,7 @@ public class InteracaoUsuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -138,6 +166,16 @@ public class InteracaoUsuario extends javax.swing.JFrame {
     private void tfExpressaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfExpressaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfExpressaoActionPerformed
+
+    private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
+        validaExpressao();
+        if (rbVetor.isSelected()) {
+            calcularComPilhaVetor();
+        } else if (rbDinamica.isSelected()) {
+            calcularComPilhaDinamica();
+        }
+
+    }//GEN-LAST:event_btCalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,13 +213,89 @@ public class InteracaoUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup GrupoBotaoPilha;
     private javax.swing.JButton btCalcular;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JRadioButton rbDinamica;
+    private javax.swing.JRadioButton rbVetor;
+    private javax.swing.JTextArea taInformacao;
     private javax.swing.JTextField tfExpressao;
     // End of variables declaration//GEN-END:variables
+
+    private void validaExpressao() {
+        String exp = tfExpressao.getText();
+
+        //Verifica se expressão contem letras ou esta vazia
+        //Se sim, lança aviso
+        if (exp.matches("[A-Z]*") || exp.matches("[a-z]*") || exp.isEmpty()) {
+            taInformacao.setText("Expressão inválida");
+        }
+
+        //Variaveis para contabilizar numeros de operadores e valores
+        int qntvalores = 0;
+        int qntoperadores = 0;
+        
+        //Vetor que recebe valores a cada espaço
+        String[] str = exp.split(" ");
+
+        //For que percorre o vetor identificando o tipo de cada dado
+        //Exemplo: str[0] = "5"
+        //O metodo ehValor(), classifica como valor
+        //Exemplo: str[2] = "+"
+        //O metodo ehOperador(), classifica como operando
+        for (int i = 0; i < str.length; i++) {
+            if (ehValor(str[i])) {
+                qntvalores++;
+            } else if (ehOperador(str[i])) {
+                qntoperadores++;
+            }
+            
+        }
+
+        //Verifica situações de erro
+        if (qntvalores == qntoperadores || qntoperadores > qntvalores) {
+            taInformacao.setText("Não há operandos suficientes para realizar a soma");
+        } else if (qntvalores - qntoperadores != 1) {
+            taInformacao.setText("Faltou algum operador para usar todos os elementos da expressão");
+        }
+    }
+
+    //Metodo que classifica se é valor
+    private boolean ehValor(String string) {
+        //O método matches informa se essa 
+        //sequência corresponde ou não à expressão regular especificada.
+        if (string.matches("[0-9]*")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Metodo que classifica se operador
+    private boolean ehOperador(String string) {
+        if (string.equals("+")
+                || string.equals("-")
+                || string.equals("/")
+                || string.equals("*")) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    private void calcularComPilhaVetor() {
+
+        //Implementar metodo
+
+    }
+
+    private void calcularComPilhaDinamica() {
+        //Implementar metodo
+    }
+
 }
