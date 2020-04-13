@@ -1,31 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package trabalho01;
 
-public class PilhaVetor<T> implements Pilha<T> {
+/**
+ *
+ * @author Panca
+ */
+public class PilhaLista<T> implements Pilha<T> {
 
-    private T[] vetor;
-    private int n = 0;
-    private int tamanho;
-
-    public PilhaVetor() {
-        tamanho = 100;
-        vetor = (T[])new Object[tamanho];
-    }
+    private ElementoLista topo;
     
     @Override
     public void push(T v) throws Exception {
-        if(n == tamanho)
-        {
-            throw new ListaException("A lista está cheia");
-        }
-        
         Integer numero = 0;
         try {
             numero = Integer.parseInt(v.toString());
-            vetor[n] = v;
-            n++;
+            ElementoLista elemento = new ElementoLista();
+            elemento.setInfo(v);
+
+            if(topo != null) {
+                elemento.setProx(topo);
+            } 
+
+            topo = elemento;
         } catch (Exception e) {
-            
-            if(n <= 1) {
+            if(topo == null || topo.getProx() == null) {
                 throw new ListaException("Expressão inválida");
             }
             
@@ -60,37 +62,35 @@ public class PilhaVetor<T> implements Pilha<T> {
                 throw new ListaException("Caractere inválido");
             }
         }
+        
     }
 
     @Override
     public T pop() throws Exception {
-        if(vazia())
-        {
+        if(topo == null) {
             throw new ListaException("A lista está vazia");
         }
-        n--;
-        T temp = vetor[n];
-        vetor[n] = null;
-        return temp;
+        
+        T retorno = (T)topo.getInfo();
+        if(topo.getProx() != null) {
+            topo = topo.getProx();
+        }
+        return retorno;
     }
 
     @Override
     public T peek() {
-        if(vazia())
-        {
-            return null;
-        }
-        return vetor[n-1];
+        return (T)topo.getInfo();
     }
 
     @Override
     public boolean vazia() {
-        return n == 0;
+        return topo == null;
     }
 
     @Override
     public void libera() {
-        vetor = (T[])new Object[100];
-        n = 0;
+        topo = null;
     }
+    
 }

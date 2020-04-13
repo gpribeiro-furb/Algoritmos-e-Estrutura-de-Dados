@@ -1,9 +1,9 @@
 package trabalho01;
 
-public interface Pilha {
-    void push(String v) throws Exception;
-    String pop () throws Exception;
-    String peek();
+public interface Pilha<T> {
+    void push(T v) throws Exception;
+    T pop () throws Exception;
+    T peek();
     boolean vazia();
     void libera();
 }

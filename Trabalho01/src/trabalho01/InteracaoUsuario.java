@@ -2,6 +2,8 @@ package trabalho01;
 
 public class InteracaoUsuario extends javax.swing.JFrame {
 
+    private Pilha pilha;
+
     /**
      * Creates new form InteracaoUsuario
      */
@@ -169,6 +171,7 @@ public class InteracaoUsuario extends javax.swing.JFrame {
 
     private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
         validaExpressao();
+
         if (rbVetor.isSelected()) {
             calcularComPilhaVetor();
         } else if (rbDinamica.isSelected()) {
@@ -289,13 +292,31 @@ public class InteracaoUsuario extends javax.swing.JFrame {
     }
 
     private void calcularComPilhaVetor() {
-
-        //Implementar metodo
-
+        this.pilha = new PilhaVetor();
+        
+        try {
+            Calcular(tfExpressao.getText());
+        } catch (Exception ex) {
+            taInformacao.setText("Erro! "+ex.getMessage());
+        }
     }
 
     private void calcularComPilhaDinamica() {
-        //Implementar metodo
+        this.pilha = new PilhaLista();
+        
+        try {
+            Calcular(tfExpressao.getText());
+        } catch (Exception ex) {
+            taInformacao.setText("Erro! "+ex.getMessage());
+        }
+    }
+    
+    private void Calcular(String expressao) throws Exception{
+        for (String str : expressao.split(" ")) {
+            pilha.push(str);
+        }
+        
+        taInformacao.setText(pilha.peek().toString());
     }
 
 }
