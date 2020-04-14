@@ -18,48 +18,8 @@ public class PilhaVetor<T> implements Pilha<T> {
             throw new ListaException("A lista está cheia");
         }
         
-        Integer numero = 0;
-        try {
-            numero = Integer.parseInt(v.toString());
-            vetor[n] = v;
-            n++;
-        } catch (Exception e) {
-            
-            if(n <= 1) {
-                throw new ListaException("Expressão inválida");
-            }
-            
-            if(v.toString().equals("+")){
-                Integer numero2 = Integer.parseInt(pop().toString());
-                Integer numero1 = Integer.parseInt(pop().toString());
-                
-                Integer resultado = numero1 + numero2;
-                push((T)resultado);
-            }
-            else if(v.toString().equals("-")){
-                Integer numero2 = Integer.parseInt(pop().toString());
-                Integer numero1 = Integer.parseInt(pop().toString());
-                
-                Integer resultado = numero1 - numero2;
-                push((T)resultado);
-            }
-            else if(v.toString().equals("*")){
-                Integer numero2 = Integer.parseInt(pop().toString());
-                Integer numero1 = Integer.parseInt(pop().toString());
-                
-                Integer resultado = numero1 * numero2;
-                push((T)resultado);
-            }
-            else if(v.toString().equals("/")){
-                Integer numero2 = Integer.parseInt(pop().toString());
-                Integer numero1 = Integer.parseInt(pop().toString());
-                
-                Integer resultado = numero1 / numero2;
-                push((T)resultado);
-            } else {
-                throw new ListaException("Caractere inválido");
-            }
-        }
+        vetor[n] = v;
+        n++;
     }
 
     @Override
@@ -90,7 +50,7 @@ public class PilhaVetor<T> implements Pilha<T> {
 
     @Override
     public void libera() {
-        vetor = (T[])new Object[100];
+        vetor = (T[])new Object[tamanho];
         n = 0;
     }
 }

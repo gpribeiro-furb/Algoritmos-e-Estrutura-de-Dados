@@ -15,54 +15,14 @@ public class PilhaLista<T> implements Pilha<T> {
     
     @Override
     public void push(T v) throws Exception {
-        Integer numero = 0;
-        try {
-            numero = Integer.parseInt(v.toString());
-            ElementoLista elemento = new ElementoLista();
-            elemento.setInfo(v);
+        ElementoLista elemento = new ElementoLista();
+        elemento.setInfo(v);
 
-            if(topo != null) {
-                elemento.setProx(topo);
-            } 
+        if(topo != null) {
+            elemento.setProx(topo);
+        } 
 
-            topo = elemento;
-        } catch (Exception e) {
-            if(topo == null || topo.getProx() == null) {
-                throw new ListaException("Expressão inválida");
-            }
-            
-            if(v.toString().equals("+")){
-                Integer numero2 = Integer.parseInt(pop().toString());
-                Integer numero1 = Integer.parseInt(pop().toString());
-                
-                Integer resultado = numero1 + numero2;
-                push((T)resultado);
-            }
-            else if(v.toString().equals("-")){
-                Integer numero2 = Integer.parseInt(pop().toString());
-                Integer numero1 = Integer.parseInt(pop().toString());
-                
-                Integer resultado = numero1 - numero2;
-                push((T)resultado);
-            }
-            else if(v.toString().equals("*")){
-                Integer numero2 = Integer.parseInt(pop().toString());
-                Integer numero1 = Integer.parseInt(pop().toString());
-                
-                Integer resultado = numero1 * numero2;
-                push((T)resultado);
-            }
-            else if(v.toString().equals("/")){
-                Integer numero2 = Integer.parseInt(pop().toString());
-                Integer numero1 = Integer.parseInt(pop().toString());
-                
-                Integer resultado = numero1 / numero2;
-                push((T)resultado);
-            } else {
-                throw new ListaException("Caractere inválido");
-            }
-        }
-        
+        topo = elemento;
     }
 
     @Override
@@ -74,6 +34,8 @@ public class PilhaLista<T> implements Pilha<T> {
         T retorno = (T)topo.getInfo();
         if(topo.getProx() != null) {
             topo = topo.getProx();
+        } else {
+            topo = null;
         }
         return retorno;
     }

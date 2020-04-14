@@ -2,20 +2,46 @@ package trabalho01;
 
 public class Calculadora {
     
-    public int somar(int numero1, int numero2){
-        return numero1 + numero2;
+    public static String calculaExpressao(String expressao, Pilha pilha) throws Exception {
+        for (String str : expressao.split(" ")) {
+            Integer numero = 0;
+            try {
+                numero = Integer.parseInt(str.toString());
+                pilha.push(numero);
+            } catch (Exception e) {
+                if(str.equals("+")){
+                    Integer numero2 = Integer.parseInt(pilha.pop().toString());
+                    Integer numero1 = Integer.parseInt(pilha.pop().toString());
+
+                    Integer resultado = numero1 + numero2;
+                    pilha.push(resultado);
+                }
+                else if(str.equals("-")){
+                    Integer numero2 = Integer.parseInt(pilha.pop().toString());
+                    Integer numero1 = Integer.parseInt(pilha.pop().toString());
+
+                    Integer resultado = numero1 - numero2;
+                    pilha.push(resultado);
+                }
+                else if(str.equals("*")){
+                    Integer numero2 = Integer.parseInt(pilha.pop().toString());
+                    Integer numero1 = Integer.parseInt(pilha.pop().toString());
+
+                    Integer resultado = numero1 * numero2;
+                    pilha.push(resultado);
+                }
+                else if(str.equals("/")){
+                    Integer numero2 = Integer.parseInt(pilha.pop().toString());
+                    Integer numero1 = Integer.parseInt(pilha.pop().toString());
+
+                    Integer resultado = numero1 / numero2;
+                    pilha.push(resultado);
+                } else {
+                    throw new ListaException("Caractere inválido");
+                }
+            }
+        }
+        
+        return pilha.peek().toString();
     }
-    
-    public int subtrair(int numero1, int numero2){
-        return numero1 - numero2;
-    }
-    
-    public int dividir(int numero1, int numero2){
-        return numero1 / numero2;
-    }
-    
-    public int multiplicar(int numero1, int numero2){
-        return numero1 * numero2;
-    }
-    
 }

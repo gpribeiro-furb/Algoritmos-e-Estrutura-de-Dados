@@ -170,12 +170,12 @@ public class InteracaoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tfExpressaoActionPerformed
 
     private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
-        validaExpressao();
-
-        if (rbVetor.isSelected()) {
-            calcularComPilhaVetor();
-        } else if (rbDinamica.isSelected()) {
-            calcularComPilhaDinamica();
+        if(validaExpressao()){
+            if (rbVetor.isSelected()) {
+                calcularComPilhaVetor();
+            } else if (rbDinamica.isSelected()) {
+                calcularComPilhaDinamica();
+            }
         }
 
     }//GEN-LAST:event_btCalcularActionPerformed
@@ -229,13 +229,14 @@ public class InteracaoUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField tfExpressao;
     // End of variables declaration//GEN-END:variables
 
-    private void validaExpressao() {
+    private boolean validaExpressao() {
         String exp = tfExpressao.getText();
 
         //Verifica se expressão contem letras ou esta vazia
         //Se sim, lança aviso
         if (exp.matches("[A-Z]*") || exp.matches("[a-z]*") || exp.isEmpty()) {
             taInformacao.setText("Expressão inválida");
+            return false;
         }
 
         //Variaveis para contabilizar numeros de operadores e valores
@@ -262,9 +263,13 @@ public class InteracaoUsuario extends javax.swing.JFrame {
         //Verifica situações de erro
         if (qntvalores == qntoperadores || qntoperadores > qntvalores) {
             taInformacao.setText("Não há operandos suficientes para realizar a soma");
+            return false;
         } else if (qntvalores - qntoperadores != 1) {
             taInformacao.setText("Faltou algum operador para usar todos os elementos da expressão");
+            return false;
         }
+        
+        return true;
     }
 
     //Metodo que classifica se é valor
@@ -295,7 +300,8 @@ public class InteracaoUsuario extends javax.swing.JFrame {
         this.pilha = new PilhaVetor();
         
         try {
-            Calcular(tfExpressao.getText());
+            String resultado = Calculadora.calculaExpressao(tfExpressao.getText(), pilha);
+            taInformacao.setText("O resultado da expressão é: "+resultado);
         } catch (Exception ex) {
             taInformacao.setText("Erro! "+ex.getMessage());
         }
@@ -305,18 +311,11 @@ public class InteracaoUsuario extends javax.swing.JFrame {
         this.pilha = new PilhaLista();
         
         try {
-            Calcular(tfExpressao.getText());
+            String resultado = Calculadora.calculaExpressao(tfExpressao.getText(), pilha);
+            taInformacao.setText("O resultado da expressão é: "+resultado);
         } catch (Exception ex) {
             taInformacao.setText("Erro! "+ex.getMessage());
         }
-    }
-    
-    private void Calcular(String expressao) throws Exception{
-        for (String str : expressao.split(" ")) {
-            pilha.push(str);
-        }
-        
-        taInformacao.setText(pilha.peek().toString());
     }
 
 }
